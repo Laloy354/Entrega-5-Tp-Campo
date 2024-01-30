@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            pictureBox1 = new PictureBox();
             label20 = new Label();
             label19 = new Label();
             comboBox2 = new ComboBox();
@@ -78,6 +79,7 @@
             textBox2 = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
             tabPage2.SuspendLayout();
             panel1.SuspendLayout();
@@ -97,6 +99,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(pictureBox1);
             tabPage1.Controls.Add(label20);
             tabPage1.Controls.Add(label19);
             tabPage1.Controls.Add(comboBox2);
@@ -120,6 +123,15 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Factura";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(6, 6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(69, 65);
+            pictureBox1.TabIndex = 17;
+            pictureBox1.TabStop = false;
             // 
             // label20
             // 
@@ -551,6 +563,7 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             tabPage2.ResumeLayout(false);
@@ -611,5 +624,6 @@
         private Label label19;
         private Label label22;
         private Label label21;
+        private PictureBox pictureBox1;
     }
 }

@@ -12,7 +12,7 @@ namespace Entrega_5_TP_Campo
 
         private Insumo insumo;
         private DateTime fechaEmision = DateTime.UtcNow;
-        
+
         private DateTime fechaVencimiento = DateTime.UtcNow.AddDays(15);
 
 
@@ -280,6 +280,11 @@ namespace Entrega_5_TP_Campo
                 {
                     idListaPrecio = _entrega5Context.ListaPrecio.Include(lp => lp.TipoCondicionDeVenta).FirstOrDefault(lp => lp.TipoCondicionDeVenta.Nombre == comboBox2.SelectedItem.ToString()).Id;
                 }
+                else
+                {
+                    MessageBox.Show("Necesita seleccionar un tipo de condición de venta antes de agregar insumos a su factura.");
+                    return;
+                }
                 float precioInsumo = _entrega5Context.Precio.Include(p => p.Insumo).Include(p => p.ListaPrecio).FirstOrDefault(p => p.ListaPrecioId == idListaPrecio && p.InsumoId == insumo.Id).Monto;
                 if (dataGridView1.RowCount > 0)
                 {
@@ -326,16 +331,16 @@ namespace Entrega_5_TP_Campo
             TipoMedioPago tipoMedioPago = _entrega5Context.TipoMedioPago.FirstOrDefault(tmp => tmp.Nombre == comboBox1.Text);
             if (label16.Text != null && label17.Text != null && label18.Text != null && label21.Text != null && label22.Text != null && afiliado != null && tipoMedioPago != null)
             {
-                    Factura factura = new Factura();
-                    factura.NumeroComprobante = Convert.ToInt32(label16.Text);
-                    factura.FechaEmision = fechaEmision;
-                    factura.FechaVencimiento = fechaVencimiento;
-                    factura.SubTotal = Convert.ToSingle(label21.Text);
-                    factura.ImporteTotal = Convert.ToInt32(label22.Text);
-                    factura.TipoMedioPagoId = tipoMedioPago.Id;
-                    factura.AfiliadoId = afiliado.Id;
-                    _entrega5Context.Add(factura);
-                    _entrega5Context.SaveChanges();
+                Factura factura = new Factura();
+                factura.NumeroComprobante = Convert.ToInt32(label16.Text);
+                factura.FechaEmision = fechaEmision;
+                factura.FechaVencimiento = fechaVencimiento;
+                factura.SubTotal = Convert.ToSingle(label21.Text);
+                factura.ImporteTotal = Convert.ToInt32(label22.Text);
+                factura.TipoMedioPagoId = tipoMedioPago.Id;
+                factura.AfiliadoId = afiliado.Id;
+                _entrega5Context.Add(factura);
+                _entrega5Context.SaveChanges();
             }
             else
             {
